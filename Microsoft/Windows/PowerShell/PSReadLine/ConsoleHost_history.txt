@@ -1,0 +1,8 @@
+$env:TEMP = "C:\Temp"`
+$env:TMP = "C:\Temp"
+dotnet run --project .\InsuranceAgency.Console\InsuranceAgency.Console.csproj
+$env:DOTNET_CLI_HOME="C:\Temp\dotnet-home"; $env:TEMP="C:\Temp"; $env:TMP="C:\Temp"; dotnet run --project .\InsuranceAgency.Console\InsuranceAgency.Console.csproj
+[Environment]::SetEnvironmentVariable("DOTNET_CLI_HOME", "C:\Temp\dotnet-home", "User")
+[Environment]::SetEnvironmentVariable("TEMP", "C:\Temp", "User")`
+
+[Environment]::SetEnvironmentVariable("TMP", "C:\Temp", "User")

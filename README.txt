@@ -102,8 +102,7 @@ public interface IInsuranceCalculator
     decimal CalculatePolicyPrice(decimal insuredAmount, decimal riskCoefficient);
 }
 
-Формула обчислення валідує вхідні параметри та повертає округлене значення страхового внеску:
-$$\text{Price} = \text{Math.Round}(\text{InsuredAmount} \times \text{RiskCoefficient}, 2)$$
+Формула обчислення валідує вхідні параметри та повертає округлене значення страхового внеску
 3.4. Власні класи виключень (Custom Exceptions)
 Для обробки специфічних помилок страхового бізнесу створено два кастомних класи виключень у папці Exceptions:
 
@@ -181,7 +180,7 @@ GitHub надає вбудовану підтримку Mermaid. Діаграм�
 classDiagram
     direction TB
 
-    %% --- 1. ІЄРАРХІЯ СУТНОСТЕЙ (МОДЕЛІ) ---
+ --- 1. ІЄРАРХІЯ СУТНОСТЕЙ (МОДЕЛІ) ---
     class Person {
         <<abstract>>
         +Guid Id
@@ -251,7 +250,7 @@ classDiagram
     Agent "1" <-- "*" InsurancePolicy : оформив
     InsurancePolicy "1" <-- "*" Claim : містить виплати
 
-    %% --- 2. КАСТОМНІ ВИКЛЮЧЕННЯ ---
+--- 2. КАСТОМНІ ВИКЛЮЧЕННЯ ---
     class PolicyExpiredException {
         +PolicyExpiredException(string message)
     }
@@ -263,7 +262,7 @@ classDiagram
     Exception <|-- PolicyExpiredException
     Exception <|-- ClaimAmountExceededException
 
-    %% --- 3. РЕПОЗИТОРІЇ ТА ІНТЕРФЕЙСИ ---
+ --- 3. РЕПОЗИТОРІЇ ТА ІНТЕРФЕЙСИ ---
     class IRepository~T~ {
         <<interface>>
         +Add(T item) void
@@ -291,7 +290,7 @@ classDiagram
 
     IInsuranceCalculator <|.. InsuranceCalculator : реалізує
 
-    %% --- 4. СЕРВІСИ ТА БАЗА ДАНИХ ---
+ --- 4. СЕРВІСИ ТА БАЗА ДАНИХ ---
     class AppData {
         +List~Client~ Clients
         +List~Agent~ Agents
@@ -319,7 +318,7 @@ classDiagram
         +Load() AppData
     }
 
-    %% --- 5. КОНСОЛЬНИЙ ІНТЕРФЕЙС (UI) ---
+--- 5. КОНСОЛЬНИЙ ІНТЕРФЕЙС (UI) ---
     class ConsoleMenu {
         -InsuranceAgencyService _agency
         -JsonFileService _fileService
@@ -345,24 +344,15 @@ classDiagram
 Visual Studio 2022 або Visual Studio Code.
 
 Кроки для запуску через командний рядок (CLI)
-
-
 Клонувати репозиторій:
 git clone <URL_вашого_репозиторію>
 cd InsuranceAgency
 
-
-
 Відновити залежності та зібрати рішення:
 dotnet build InsuranceAgency.sln
 
-
-
 Запустити консольний проект:
 dotnet run --project InsuranceAgency.Console/InsuranceAgency.Console.csproj
-
-
-
 
 8. Демонстрація роботи та тестування
 Нижче наведено приклади виконання основних сценаріїв у консольному інтерфейсі.
@@ -411,13 +401,10 @@ ID агента: c0f11dfb-6701-4987-a19b-28376371582c
 
 8.4. Тестування обробки виключень (Захист системи)
 
-
 Спроба вводу некоректної дати або порожнього поля:
 Email:
 Поле не може бути порожнім.
 Email: nazar@example.com
-
-
 
 Перевищення страхової суми при реєстрації виплати (ClaimAmountExceededException):
 Ваш вибір: 7
@@ -427,14 +414,10 @@ ID полісу: 8f3d1e2a-5b4c-4d3e-9a1b-2c3d4e5f6a7b
 Запитана сума виплати (грн): 600000
 Помилка: Сума заяви разом із вже схваленими виплатами перевищує страхову суму.
 
-
-
 Спроба подачі заяви по простроченому полісу (PolicyExpiredException):
 Ваш вибір: 7
 Дата випадку (рррр-мм-дд): 2027-02-01
 Помилка: На дату страхового випадку строк дії поліса вже завершився.
-
-
 
 
 9. Висновки
